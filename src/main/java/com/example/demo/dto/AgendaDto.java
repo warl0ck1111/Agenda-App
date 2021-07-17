@@ -28,11 +28,6 @@ public class AgendaDto {
 
     private Boolean isCompleted ;
 
-    private String time;
-
-    private Boolean isImportant;
-
-    private Boolean isDeleted = false;
 
 
 }
