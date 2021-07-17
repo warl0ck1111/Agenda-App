@@ -28,7 +28,7 @@ class GlobalExceptionsHandler
         extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler(value = {IllegalArgumentException.class,})
+    @ExceptionHandler(value = {IllegalArgumentException.class, NoSuchElementException.class})
     protected ResponseEntity<?> handleConflict(Exception ex, WebRequest request) throws Exception {
 
         //add headers to be returned with response
@@ -37,11 +37,11 @@ class GlobalExceptionsHandler
 
         if (ex instanceof IllegalArgumentException) {
             log.error(ex.getMessage(), ex);
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new JsonResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
 
         }else if (ex instanceof NoSuchElementException) {
             log.error(ex.getMessage(), ex);
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new JsonResponse(ex.getMessage()), HttpStatus.NOT_FOUND);
 
         } else {
             // rethrow the given exception for further processing through the HandlerExceptionResolver chain.
