@@ -38,15 +38,7 @@ public class Agenda {
     @Column(name = "COMPLETED")
     private Boolean isCompleted = false;
 
-    @Column(name = "TIME")
-    private String time;
 
-    @Column(name = "IS_IMPORTANT")
-    private Boolean isImportant = false;
-
-
-    @Column(name = "IS_DELETED")
-    private boolean isDeleted = false;
 
     @CreationTimestamp
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd h:m:s")
