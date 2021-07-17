@@ -28,32 +28,32 @@ public class AgendaController {
     public ResponseEntity<?> createAgenda(@RequestBody AgendaDto dto){
         System.out.println(dto);
         agendaService.create(dto);
-        return new ResponseEntity<>("Agenda created Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>(new JsonResponse("Agenda created Successfully"), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<?> updateAgenda(@RequestBody AgendaDto dto){
         System.out.println(dto);
         agendaService.update(dto);
-        return new ResponseEntity<>("Item Updated", HttpStatus.OK);
+        return new ResponseEntity<>(new JsonResponse("Item Updated"), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAgenda(@PathVariable(name = "id") Long id){
         agendaService.delete(id);
-        return new ResponseEntity<>("Agenda Deleted", HttpStatus.OK);
+        return new ResponseEntity<>(new JsonResponse("Agenda Deleted"), HttpStatus.OK);
     }
 
     @GetMapping("/get-all")
     public ResponseEntity<?> findAll(){
         log.info("entered....Get all");
-        return new ResponseEntity<>(agendaService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(new JsonResponse(agendaService.findAll()), HttpStatus.OK);
     }
 
  @GetMapping("/get-all/completed")
     public ResponseEntity<?> findAllCompleted(){
         log.info("entered....Get all...completed");
-        return new ResponseEntity<>(agendaService.findAllCompleted(), HttpStatus.OK);
+        return new ResponseEntity<>(new JsonResponse(agendaService.findAllCompleted()), HttpStatus.OK);
     }
 
 
